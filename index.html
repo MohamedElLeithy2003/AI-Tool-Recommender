@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tool Recommender - Find the Perfect Tools in Less Than 60 Seconds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .hero .subheadline {
+            font-size: 22px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 20px 48px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 10px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .price {
+            font-size: 18px;
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+        
+        .guarantee {
+            font-size: 14px;
+            margin-top: 15px;
+            opacity: 0.85;
+        }
+        
+        .problem-section {
+            padding: 60px 20px;
+            background: #fff;
+        }
+        
+        .problem-section h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+        
+        .problem-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .problem-list li {
+            font-size: 18px;
+            padding: 15px 0 15px 40px;
+            position: relative;
+            line-height: 1.7;
+        }
+        
+        .problem-list li:before {
+            content: "❌";
+            position: absolute;
+            left: 0;
+            font-size: 24px;
+        }
+        
+        .solution-section {
+            padding: 60px 20px;
+            background: #f8f9fa;
+        }
+        
+        .solution-section h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+        
+        .how-it-works {
+            margin: 40px 0;
+        }
+        
+        .step {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: start;
+            gap: 20px;
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        .step-content p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .features {
+            margin: 40px 0;
+        }
+        
+        .feature {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .feature p {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        .comparison {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+        
+        .comparison h3 {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .comparison-column h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .comparison-column.manual {
+            border-right: 2px solid #f0f0f0;
+            padding-right: 30px;
+        }
+        
+        .comparison-column.manual h4 {
+            color: #f44336;
+        }
+        
+        .comparison-column.automated h4 {
+            color: #4CAF50;
+        }
+        
+        .comparison-item {
+            padding: 12px 0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .results-section {
+            padding: 60px 20px;
+            background: #fff;
+            text-align: center;
+        }
+        
+        .results-section h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .stat {
+            padding: 30px 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .testimonial {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .faq-section {
+            padding: 60px 20px;
+            background: #f8f9fa;
+        }
+        
+        .faq-section h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+        
+        .faq-item {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        .faq-answer {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .final-cta {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .final-cta p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .trust-badge {
+            font-size: 16px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero .subheadline {
+                font-size: 18px;
+            }
+            
+            .cta-button {
+                padding: 18px 36px;
+                font-size: 18px;
+                width: 100%;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-column.manual {
+                border-right: none;
+                border-bottom: 2px solid #f0f0f0;
+                padding-right: 0;
+                padding-bottom: 30px;
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin: 0 auto 15px;
+            }
+        }
+    </style>
+    </head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1> Stop Wasting Hours Searching for Tools. Get The Best Recommendations in Less Than 60 Seconds</h1>
+             <p class="subheadline">AI-powered tool recommender that matches you with the best software for your needs—complete with pricing, features, and direct links.</p>
+             <a href="https://elleithy.gumroad.com/l/bugszm?wanted=true"class="cta-button">Get Instant Access for £25 →</a>
+             <p class="price">One-time payment. Unlimited recommendations. Forever.</p>
+            <p class="guarantee">✓ Instant delivery. No setup required.</p>
+        </div>
+    </div>
+
+    <p class="problem-section">
+        <div class="container">
+            <h2> You're Drowning in Tool Research While Your Work Piles Up </h2>
+            <ul class="problem-list">
+                <li>You spend 5+ hours comparing tools on Google and Reddit</li>
+                <li>You read 50+ reviews and still don't know which tool to pick</li>
+                <li>You subscribe to the wrong tool and waste £50-200 before finding out</li>
+                <li>You ask in 10 Facebook groups and get 10 different answers</li>
+                <li>You're paralyzed by choice and end up doing nothing</li>
+            </ul>
+            <p style="font-size: 22px; text-align: center; margin-top: 40px; font-weight: 600;">Meanwhile, your tasks stay manual and your competitors are already automated.</p>
+        </div>
+    </div>
+
+    <div class="solution-section">
+        <div class="container">
+            <h2>What If You Could Skip All That Research?</h2>
+            
+            <p style="font-size: 20px; text-align: center; margin-bottom: 40px;">The AI Tool Recommender gives you curated, personalized software recommendations in seconds.</p>
+            
+            <div class="how-it-works">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Tell Us What You Need</h3>
+                        <p>Describe your goal: "automate email follow-ups," "manage projects," "analyze data," or whatever you're trying to solve.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Get Instant Recommendations</h3>
+                        <p>Our AI instantly matches you with 3-5 best-fit tools, complete with names, descriptions, pricing, key features, and match scores.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Take Action Immediately</h3>
+                        <p>Open all tool links in one click to compare, or download a CSV for easy tracking and planning. Start using the right tools today.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#" class="cta-button">Get Your Recommendations Now →</a>
+            </div>
+        </div>
+    </div>
+
+     <div class="results-section">
+        <div class="container">
+            <div class="comparison">
+                <h3>Manual Research vs. AI Recommendations</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-column manual">
+                        <h4>❌ Manual Research</h4>
+                        <div class="comparison-item">5-10 hours of Googling</div>
+                        <div class="comparison-item">Reading 50+ contradictory reviews</div>
+                        <div class="comparison-item">Joining Facebook groups for advice</div>
+                        <div class="comparison-item">Trying wrong tools and wasting money</div>
+                        <div class="comparison-item">Analysis paralysis—never deciding</div>
+                        <div class="comparison-item">Still not sure if you picked right</div>
+                    </div>
+                    <div class="comparison-column automated">
+                        <h4>✅ AI Recommendations</h4>
+                        <div class="comparison-item">60 seconds to get results</div>
+                        <div class="comparison-item">Curated, high-quality tools only</div>
+                        <div class="comparison-item">Personalized to your exact needs</div>
+                        <div class="comparison-item">See pricing before subscribing</div>
+                        <div class="comparison-item">Clear match scores for confidence</div>
+                        <div class="comparison-item">CSV export for easy comparison</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="solution-section">
+        <div class="container">
+            <h2>Everything You Need to Find the Perfect Tools</h2>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>⚡ Instant Recommendations</h3>
+                    <p>No signup forms. No waiting. Enter your needs and get 3-5 curated tool recommendations in under 60 seconds.</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>💰 Complete Pricing Information</h3>
+                    <p>See exact pricing for each tool before you subscribe. No surprises. Make informed decisions based on your budget.</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>🎯 Match Scores</h3>
+                    <p>Each recommendation includes a match score showing how well it fits your specific needs. Pick with confidence.</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>📊 CSV Export</h3>
+                    <p>Download your recommendations as a CSV file for easy tracking, comparison, and team sharing. Keep everything organized.</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>🔗 Direct Links</h3>
+                    <p>Open all recommended tool websites instantly in separate tabs. Compare features, pricing, and sign up without searching.</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>∞ Unlimited Use</h3>
+                    <p>One-time payment. Generate recommendations for email tools, project management, analytics, chatbots—whatever you need, whenever you need it.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-section">
+        <div class="container">
+            <h2>Stop Researching. Start Using.</h2>
+            
+            <div class="stat-grid">
+                <div class="stat">
+                    <div class="stat-number">60s</div>
+                    <div class="stat-label">To get recommendations</div>
+                </div>
+                
+                <div class="stat">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Hours saved per search</div>
+                </div>
+                
+                <div class="stat">
+                    <div class="stat-number">£25</div>
+                    <div class="stat-label">One-time payment</div>
+                </div>
+                
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Unlimited searches</div>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"I wasted 3 days researching email automation tools. This gave me the perfect recommendation in 2 minutes. Saved me hours and £100+ in wrong subscriptions."</p>
+                <p class="testimonial-author">— Rachel T., Marketing Consultant</p>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"Best £25 I've spent. No more analysis paralysis. Just instant, accurate recommendations that actually fit my needs. Used it 5 times already."</p>
+                <p class="testimonial-author">— David K., Startup Founder</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">How is this different from just Googling?</div>
+                <div class="faq-answer">Google gives you 1,000+ results with conflicting opinions. We give you 3-5 curated, personalized recommendations with pricing, features, and match scores—in 60 seconds.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Is this a subscription?</div>
+                <div class="faq-answer">No. One-time payment of £25. Unlimited tool recommendations forever. No recurring fees.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What types of tools can I search for?</div>
+                <div class="faq-answer">Anything: email automation, project management, analytics, chatbots, CRM, social media scheduling, invoicing, design, development tools—whatever you need.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do I need technical skills?</div>
+                <div class="faq-answer">No. If you can type what you're looking for, you can use this. Simple input, instant results.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Are these affiliate links?</div>
+                <div class="faq-answer">No. We recommend the best tools for your needs regardless of partnerships. Our goal is accuracy, not commissions.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What if I'm not satisfied?</div>
+                <div class="faq-answer">30-day money-back guarantee. If the recommendations don't help you find the right tools, email us for a full refund.</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Final CTA -->
+    <div class="final-cta">
+        <div class="container">
+            <h2>Stop Wasting Time on Tool Research</h2>
+            <p>Get instant, personalized recommendations and start using the right tools today.<br>One payment. Unlimited searches. 30-day guarantee.</p>
+            
+            <a href="#" class="cta-button">Get Instant Access for £25 →</a>
+            
+            <div class="trust-badges">
+                <div class="trust-badge">✓ Instant Delivery</div>
+                <div class="trust-badge">✓ No Setup Required</div>
+                <div class="trust-badge">✓ 30-Day Guarantee</div>
+                <div class="trust-badge">✓ Unlimited Use</div>
+            </div>
+            
+            <p style="margin-top: 30px; font-size: 16px; opacity: 0.85;">Questions? Email: mohamedelleithy2003@gmail.com</p>
+        </div>
+    </div>
+    
+</body>
+</html>
